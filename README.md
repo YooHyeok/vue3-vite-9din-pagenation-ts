@@ -1,5 +1,83 @@
-# Vue 3 + TypeScript + Vite
+# 개발환경 설치
+<details>
+<summary>접기/펼치기</summary>
+<br>
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+- Vite 프로젝트 생성 명령어
+  ```bash
+  > npm create vite@latest
+  ```
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+- 패키지 설치 확인 (y입력)
+  ```bash
+  Need to install the following packages:
+    create-vite@6.5.0
+  Ok to proceed? (y) y
+  ```
+  
+- 프레임워크 선택 - Vue 
+  ```bash
+  │
+  ◇  Project name:
+  │  vue3-vite-9din-pagenation-ts
+  │
+  ◆  Select a framework:
+  │  ○ Vanilla
+  │  ● Vue
+  │  ○ React
+  │  ○ Preact
+  │  ○ Lit
+  │  ○ Svelte
+  │  ○ Solid
+  │  ○ Qwik
+  │  ○ Angular
+  │  ○ Marko
+  │  ○ Others
+  └
+  ```
+  
+- 세부옵션 - 언어 TypeScript 선택  
+  ```bash
+  ◆  Select a variant:
+  │  ● TypeScript
+  │  ○ JavaScript
+  │  ○ Official Vue Starter ↗
+  │  ○ Nuxt ↗
+  └
+  ```
+
+- 프로젝트 의존성 패키지 설치
+  ```bash
+  npm install
+  ```
+
+- Vite 개발 서버를 실행
+  ```bash
+  npm run dev
+  ```
+
+- 전체 내용
+  ```bash
+  > npm create vite@latest
+  Need to install the following packages:
+    create-vite@6.5.0
+  Ok to proceed? (y) y
+  │
+  ◇  Project name:
+  │  vue3-vite-9din-pagenation-ts
+  │
+  ◇  Select a framework:
+  │  Vue
+  │
+  ◇  Select a variant:
+  │  TypeScript
+  │
+  ◇  Scaffolding project in C:\Programming\workspace_vs\vue3-vite-9din-pagenation-ts...
+  │
+  └  Done. Now run:
+
+    cd vue3-vite-9din-pagenation-ts
+    npm install
+    npm run dev
+  ```  
+</details>
