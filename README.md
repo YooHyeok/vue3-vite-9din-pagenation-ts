@@ -140,6 +140,198 @@
 
 </details>
 
+## Vue Router 및 Alias 설정
+<details>
+<summary>접기/펼치기</summary>
+<br>
+
+- Vue Router 패키지 의존성 설치
+  ```bash
+  npm install vue-router@4
+  ```
+
+- src 디렉토리 하위에 `routes/index.ts` 파일을 구성한다.
+  - 기존 js방식
+    ```js
+    import {createRouter, createWebHashHistory} from 'vue-router'
+    const routes = [
+      {
+        path: '/',
+        name: 'Home',
+        component: () => import('@pages/index.vue')
+      }
+    ]
+    const router = createRouter({
+      history: createWebHashHistory(),
+      routes,
+    })
+    export default router
+    ```
+
+  - ts방식
+    ```ts
+    import {createRouter, createWebHashHistory, RouteRecordRaw} from 'vue-router'
+    const routes: Array<RouteRecordRaw> = [
+      {
+        path: '/',
+        name: 'Home',
+        component: () => import('@pages/index.vue')
+      }
+    ]
+    const router = createRouter({
+      history: createWebHashHistory(),
+      routes,
+    })
+    export default router
+    ```
+    1. RouteRecordRaw 플러그인 import
+    2. routes의 타입을 `Array<RouteRecordRaw>` 와 같이 배열 타입으로 타입 정의
+    3. main.ts 파일에서 router import후 메소드 체이닝으로 use 등록
+      ```ts
+      import {createApp} from 'vue'
+      import App from './App.vue'
+      import router from './routes/index'
+      createApp(App).use(router).mount('#app')
+      ```
+      
+  - RouteRecordRaw 오류 발생
+    ```
+    'RouteRecordRaw' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.ts(1484)
+    ```
+
+  - 대응
+    ```ts
+    import {createRouter, createWebHashHistory} from 'vue-router'
+    import type { RouteRecordRaw } from 'vue-router'
+    const routes: Array<RouteRecordRaw> = [
+      {
+        path: '/',
+        name: 'Home',
+        component: () => import('@pages/index.vue')
+      }
+    ]
+    const router = createRouter({
+      history: createWebHashHistory(),
+      routes,
+    })
+    export default router
+    ```
+
+  - vite-env.d.ts : .vue 확장자 파일들의 타입 정의 설정(생략 가능)
+    ```ts
+    /// <reference types="vite/client" />
+
+    declare module '*.vue' {
+      import type { DefineComponent } from "vue";
+
+      const component: DefineComponent<{}, {}, any>
+      
+      export default component
+    }
+    ```
+
+    - scss (css 전처리) 전역 적용 설정
+      1. main.ts의 main.scss import 제거
+      2. vite.config.ts - 전역 설정 등록
+        - defineConfig - css 옵션 등록
+          ```ts
+          import { defineConfig } from 'vite'
+          import vue from '@vitejs/plugin-vue'
+
+          // https://vite.dev/config/
+          export default defineConfig({
+            plugins: [vue()],
+            css: {
+              preprocessorOptions: {
+                scss: {
+                  additionalData: `@import "./src/assets/styles/main.scss";`
+                }
+              }
+            }
+          })
+          ```
+      3. vite.config.ts - root 디렉토리 alias 설정
+        - defineConfig - resolve 옵션 등록 (보통 ~나 @를 많이 사용함.)
+          ```ts
+          import { defineConfig } from 'vite'
+          import vue from '@vitejs/plugin-vue'
+          import { fileURLToPath, URL } from 'url'
+
+          // https://vite.dev/config/
+          export default defineConfig({
+            plugins: [vue()],
+            resolve: {
+              alias: {
+                '@': fileURLToPath(new URL('./src', import.meta.url)),
+              }
+            },
+            css: {
+              preprocessorOptions: {
+                scss: {
+                  additionalData: `@import "./src/assets/styles/main.scss";`
+                }
+              }
+            }
+          })
+          ```
+
+        - 이슈
+          1. Cannot find module 'url' or its corresponding type declarations.ts(2307)
+          2. Property 'url' does not exist on type 'ImportMeta'.ts(2339)
+          - 대응
+            ```
+            npm install @types/node
+            ```
+
+      4. vite.config.ts - 잔여 alias 설정
+        - defineConfig - resolve 옵션
+          ```ts
+          import { defineConfig } from 'vite'
+          import vue from '@vitejs/plugin-vue'
+          import { fileURLToPath, URL } from 'url'
+
+          // https://vite.dev/config/
+          export default defineConfig({
+            plugins: [vue()],
+            resolve: {
+              alias: {
+                '@': fileURLToPath(new URL('./src', import.meta.url)),
+                '@apis': fileURLToPath(new URL('./src/apis', import.meta.url)),
+                '@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),
+                '@components': fileURLToPath(new URL('./src/components', import.meta.url)),
+                '@pages': fileURLToPath(new URL('./src/pages', import.meta.url)),
+                '@routes': fileURLToPath(new URL('./src/routes', import.meta.url)),
+                '@store': fileURLToPath(new URL('./src/store', import.meta.url)),
+              }
+            },
+            css: {
+              preprocessorOptions: {
+                scss: {
+                  additionalData: `@import "./src/assets/styles/main.scss";`
+                }
+              }
+            }
+          })
+          ```
+      5. tsconfig.json - alias js 컴파일 옵션 추가
+        ```json
+        {
+          "compilerOptions": {
+            "baseUrl": ".",
+            "paths": {
+              "@": ["src/*"],
+              "@apis": ["src/apis/*"],
+              "@assets": ["src/assets/*"],
+              "@components": ["src/components/*"],
+              "@pages": ["src/pages/*"],
+              "@routes": ["src/routes/*"],
+              "@store": ["src/store/*"],
+            }
+          }
+        }
+        ```
+</details>
+
 ##
 <details>
 <summary>접기/펼치기</summary>
