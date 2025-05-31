@@ -420,6 +420,28 @@
 
 </details>
 
+## 이슈
+<details>
+<summary>접기/펼치기</summary>
+<br>
+
+- #### vue3 vetur component 모듈 참조 이슈
+  ```
+  Cannot find module '@경로/컴포넌트명.vue' or its corresponding type declarations.Vetur(2307)
+  ```
+  위 이슈는 vue3 프로젝트에서 vetur 플러그인으로 인해 발생하는 이슈이다.
+
+- 이슈대응 방안: 해당 프로젝트에 한해 선택적 vetur plugin OFF
+  루트 경로에서 .vscode 디렉토리 하위에 settings.json을 추가하고 아래 옵션을 추가한다. 
+  ```
+  {
+    "vetur.validation.template": false,
+    "vetur.validation.style": false,
+    "vetur.validation.script": false
+  }
+  ```
+</details>
+
 ##
 <details>
 <summary>접기/펼치기</summary>
