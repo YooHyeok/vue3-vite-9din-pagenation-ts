@@ -330,6 +330,94 @@
           }
         }
         ```
+    - **이슈** : npm run dev로 node서버 기동시 아래와 같은 오류가 발생
+      ```
+      [plugin:vite:css] [sass] Can't find stylesheet to import.
+        ╷
+      1 │ @import "./src/assets/styles/main.scss";
+        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        ╵
+        src\pages\index.vue 1:9  root stylesheet
+      C:/Programming/workspace_vs/vue3-vite-9din-pagenation-ts/src/pages/index.vue:1:9
+      ```
+    - **해결** : AI 활용으로 문제해결, vite.config.ts 파일에서 아래와같이 ./src 대신 @로 적용.
+      ```ts
+      export default defineConfig({
+        plugins: [vue()],
+        resolve: {
+          alias: {
+            '@': fileURLToPath(new URL('./src', import.meta.url)),
+            '@apis': fileURLToPath(new URL('./src/apis', import.meta.url)),
+            '@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),
+            '@components': fileURLToPath(new URL('./src/components', import.meta.url)),
+            '@pages': fileURLToPath(new URL('./src/pages', import.meta.url)),
+            '@routes': fileURLToPath(new URL('./src/routes', import.meta.url)),
+            '@store': fileURLToPath(new URL('./src/store', import.meta.url)),
+          }
+        },
+        css: {
+          preprocessorOptions: {
+            scss: {
+              additionalData: `@import "@/assets/styles/main.scss";`
+            }
+          }
+        }
+      })
+      ```
+
+
+</details>
+
+## 레이아웃 구조
+<details>
+<summary>접기/펼치기</summary>
+<br>
+
+### 컬러 헥사코드 정의
+사용될 컬러 코드를 아래와 같이 미리 세팅 해 놓으면 전역에서 변수처럼 사용할 수 있기 때문에 편리해진다.
+- [color.scss](src/assets/styles/color.scss)
+  ```scss
+  // COLOR WHITE
+  $color-white-000: #ffffff;
+  $color-white-100: #ffffff;
+
+  // COLOR BLUE
+  $color-blue-000: #1661a9;
+
+  // COLOR BLACK
+  $color-blakc-900: #000000;
+  ```
+
+### `MBC1961굴림` 폰트 import
+1. 구글에 [눈누폰트](https://noonnu.cc/font_page/pick) 검색
+2. 접속 후 MBC를 검색
+3. `MBC1961굴림` 클릭
+4. 우측 웹 폰트로 사용 영역의 font-face 코드를 복사
+  ```
+  @font-face {
+    font-family: 'MBC1961GulimM';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  ```
+5. [font.scss](src/assets/styles/font.scss) 파일에 붙여넣기.  
+
+### `스위트` 폰트 import
+1. 구글에 [눈누폰트](https://noonnu.cc/font_page/pick) 검색
+2. 접속 후 MBC를 검색
+3. `스위트` 클릭
+4. 우측 웹 폰트로 사용 영역의 font-face 코드를 복사
+  ```
+  @font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+  }
+  ```
+5. [font.scss](src/assets/styles/font.scss) 파일에 붙여넣기.  
+
 </details>
 
 ##
