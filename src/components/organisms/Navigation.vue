@@ -3,19 +3,19 @@
     <div class="navigation">
       <div class="navigation__sub-menu">
         <div class="navigation__sub-menu__button-box">
-          <BasicButton v-for="item in menu" :key="item.label" :data="item"/>
+          <BasicButton v-for="item in topMenu" :key="item.label" :data="item"/>
         </div>
       </div>
       <div class="navigation__sub-menu">
         <span class="navigation__sub-menu__title">Recruitment</span>
         <div class="navigation__sub-menu__button-box">
-          <BasicButton v-for="item in menu" :key="item.label" :data="item"/>
+          <BasicButton v-for="item in middleMenu" :key="item.label" :data="item"/>
         </div>
       </div>
       <div class="navigation__sub-menu">
         <span class="navigation__sub-menu__title">Organization</span>
         <div class="navigation__sub-menu__button-box">
-          <BasicButton v-for="item in menu" :key="item.label" :data="item"/>
+          <BasicButton v-for="item in bottomMenu" :key="item.label" :data="item"/>
         </div>
       </div>
     </div>
@@ -32,8 +32,8 @@ const menu = [
     label: 'Dashboard',
   },
   {
-    icon: 'Index',
-    label: 'Index',
+    icon: 'Indox',
+    label: 'Indox',
   },
   {
     icon: 'Calendar',
@@ -52,8 +52,8 @@ const menu = [
     label: 'Document',
   },
   {
-    icon: 'CarrerSite',
-    label: 'CarrerSite',
+    icon: 'CareerSite',
+    label: 'CareerSite',
   },
   {
     icon: 'Employee',
@@ -68,6 +68,9 @@ const menu = [
     label: 'Settings',
   },
 ]
+const topMenu = computed(() => menu.slice(0, 3))
+const middleMenu = computed(() => menu.slice(3, 7))
+const bottomMenu = computed(() => menu.slice(7,  menu.length))
 
 </script>
 <style lang="scss" scoped>
