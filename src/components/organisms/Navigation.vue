@@ -81,8 +81,9 @@ const bottomMenu = computed(() => menu.slice(7,  menu.length))
   justify-content: center;
 
   width: 100%;
+  height: calc(70vh - 40px);
 
-  gap: 40px;
+  gap: 14px;
 
   &__sub-menu  {
     display: flex;

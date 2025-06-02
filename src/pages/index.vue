@@ -32,8 +32,8 @@ import Navigation from '@components/organisms/Navigation.vue';
     align-items: center;
     justify-content: center;
 
-    width: 60vw;
-    height: 61vh;
+    width: 70vw;
+    height: 70vh;
 
     &__navigation {
       width: 20%;

@@ -26,7 +26,7 @@ const {theme} = toRefs(props)
   padding: 20px;
   
   background-color: $color-white-000;
-  border-radius: 24px;
+  border-radius: 16px;
   
   /* .basic-layout[layout-theme="blue"] {} 형태로 css효과가 */
   &[layout-theme="blue"] {
