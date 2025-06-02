@@ -78,7 +78,7 @@ const bottomMenu = computed(() => menu.slice(7,  menu.length))
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
 
   width: 100%;
   height: calc(70vh - 40px);
