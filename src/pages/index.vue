@@ -2,7 +2,9 @@
   <div class="page">
     <BasicLayout>
       <div class="page__container">
-        <section class="page__container__navigation"></section>
+        <section class="page__container__navigation">
+          <Navigation/>
+        </section>
         <section class="page__container__notice"></section>
       </div>
     </BasicLayout>
@@ -11,6 +13,7 @@
 
 <script setup lang="ts">
 import BasicLayout from '@components/atoms/layout/BasicLayout.vue';
+import Navigation from '@components/organisms/Navigation.vue';
 </script>
 
 <style lang="scss" scoped>
@@ -30,7 +33,7 @@ import BasicLayout from '@components/atoms/layout/BasicLayout.vue';
     justify-content: center;
 
     width: 60vw;
-    height: 60vh;
+    height: 61vh;
 
     &__navigation {
       width: 20%;
