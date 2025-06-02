@@ -2,21 +2,73 @@
   <BasicLayout :theme="'blue'">
     <div class="navigation">
       <div class="navigation__sub-menu">
-        <div class="navigation__sub-menu__button-box"></div>
+        <div class="navigation__sub-menu__button-box">
+          <BasicButton v-for="item in menu" :key="item.label" :data="item"/>
+        </div>
       </div>
       <div class="navigation__sub-menu">
         <span class="navigation__sub-menu__title">Recruitment</span>
-        <div class="navigation__sub-menu__button-box"></div>
+        <div class="navigation__sub-menu__button-box">
+          <BasicButton v-for="item in menu" :key="item.label" :data="item"/>
+        </div>
       </div>
       <div class="navigation__sub-menu">
         <span class="navigation__sub-menu__title">Organization</span>
-        <div class="navigation__sub-menu__button-box"></div>
+        <div class="navigation__sub-menu__button-box">
+          <BasicButton v-for="item in menu" :key="item.label" :data="item"/>
+        </div>
       </div>
     </div>
   </BasicLayout>
 </template>
 <script setup lang="ts">
-  import BasicLayout from '@components/atoms/layout/BasicLayout.vue';
+import BasicLayout from '@components/atoms/layout/BasicLayout.vue';
+import BasicButton from '@components/atoms/button/BasicButton.vue';
+import { computed } from 'vue';
+
+const menu = [
+  {
+    icon: 'Dashboard',
+    label: 'Dashboard',
+  },
+  {
+    icon: 'Index',
+    label: 'Index',
+  },
+  {
+    icon: 'Calendar',
+    label: 'Calendar',
+  },
+  {
+    icon: 'Jobs',
+    label: 'Jobs',
+  },
+  {
+    icon: 'Reference',
+    label: 'Reference',
+  },
+  {
+    icon: 'Document',
+    label: 'Document',
+  },
+  {
+    icon: 'CarrerSite',
+    label: 'CarrerSite',
+  },
+  {
+    icon: 'Employee',
+    label: 'Employee',
+  },
+  {
+    icon: 'Structure',
+    label: 'Structure',
+  },
+  {
+    icon: 'Settings',
+    label: 'Settings',
+  },
+]
+
 </script>
 <style lang="scss" scoped>
 .navigation {
