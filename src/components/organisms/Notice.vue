@@ -28,22 +28,138 @@
         <span class="label">Skill</span>
       </div>
       <div class="notice__body__list-box">
-        <NoticeList/>
-        <NoticeList/>
-        <NoticeList/>
-        <NoticeList/>
-        <NoticeList/>
-        <NoticeList/>
-        <NoticeList/>
-        <NoticeList/>
-        <NoticeList/>
-        <NoticeList/>
+        <NoticeList v-for="item in tableData" :key="item.userName" :data="item"/>
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import NoticeList from '@components/mocules/List.vue'
+import { ref } from 'vue';
+
+interface List {
+  userName: string;
+  userRole: string;
+  userResumeScore: number;
+  userSkillMatch: number;
+  userSkill: string;
+}
+
+const tableData = ref<List[]>([
+  {
+      userName: 'Marco',
+      userRole: 'FrontEnd Developer',
+      userResumeScore: 89,
+      userSkillMatch: 80,
+      userSkill: 'Junior',
+  },
+  {
+      userName: 'Jeff',
+      userRole: 'BackEnd Developer',
+      userResumeScore: 72,
+      userSkillMatch: 65,
+      userSkill: 'Senior',
+  },
+  {
+      userName: 'Eric',
+      userRole: 'User Experience',
+      userResumeScore: 90,
+      userSkillMatch: 91,
+      userSkill: 'Senior',
+  },
+  {
+      userName: 'Merry',
+      userRole: 'User Interface',
+      userResumeScore: 56,
+      userSkillMatch: 43,
+      userSkill: 'Junior',
+  },
+  {
+      userName: 'Harry',
+      userRole: 'Project Manager',
+      userResumeScore: 61,
+      userSkillMatch: 81,
+      userSkill: 'Junior',
+  },
+  {
+      userName: 'John',
+      userRole: 'Project Orner',
+      userResumeScore: 100,
+      userSkillMatch: 100,
+      userSkill: 'Senior',
+  },
+  {
+      userName: 'Maxwell',
+      userRole: 'FrontEnd Developer',
+      userResumeScore: 50,
+      userSkillMatch: 60,
+      userSkill: 'Senior',
+  },
+  {
+      userName: 'Pole',
+      userRole: 'BackEnd Developer',
+      userResumeScore: 80,
+      userSkillMatch: 76,
+      userSkill: 'Senior',
+  },
+  //
+  {
+      userName: 'Marco',
+      userRole: 'FrontEnd Developer',
+      userResumeScore: 89,
+      userSkillMatch: 80,
+      userSkill: 'Junior',
+  },
+  {
+      userName: 'Jeff',
+      userRole: 'BackEnd Developer',
+      userResumeScore: 72,
+      userSkillMatch: 65,
+      userSkill: 'Senior',
+  },
+  {
+      userName: 'Eric',
+      userRole: 'User Experience',
+      userResumeScore: 90,
+      userSkillMatch: 91,
+      userSkill: 'Senior',
+  },
+  {
+      userName: 'Merry',
+      userRole: 'User Interface',
+      userResumeScore: 56,
+      userSkillMatch: 43,
+      userSkill: 'Junior',
+  },
+  {
+      userName: 'Harry',
+      userRole: 'Project Manager',
+      userResumeScore: 61,
+      userSkillMatch: 81,
+      userSkill: 'Junior',
+  },
+  {
+      userName: 'John',
+      userRole: 'Project Orner',
+      userResumeScore: 100,
+      userSkillMatch: 100,
+      userSkill: 'Senior',
+  },
+  {
+      userName: 'Maxwell',
+      userRole: 'FrontEnd Developer',
+      userResumeScore: 50,
+      userSkillMatch: 60,
+      userSkill: 'Senior',
+  },
+  {
+      userName: 'Pole',
+      userRole: 'BackEnd Developer',
+      userResumeScore: 80,
+      userSkillMatch: 76,
+      userSkill: 'Senior',
+  },
+])
 </script>
 <style lang="scss" scoped>
 .notice {
