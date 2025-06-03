@@ -22,7 +22,6 @@
 
 <script setup lang="ts">
 import BarChart from '@components/atoms/chart/BarChart.vue';
-// import BarChart from '@components/atoms/chart/BarChart2.vue';
 import { toRefs } from 'vue';
 interface List {
   userName: string;
