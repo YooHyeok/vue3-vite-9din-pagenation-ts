@@ -3,19 +3,37 @@
     <div class="list__avatar">
       <img src="@/assets/images/arare.jpg" alt="" class="list__avatar__image">
       <div class="list__avatar__text-box">
-        <span class="name">Marco</span>
-        <span class="ducy">User Experience</span>
+        <span class="name">{{ data.userName }}</span>
+        <span class="ducy">{{ data.userRole }}</span>
       </div>
     </div>
-    <div class="list__item"></div>
-    <div class="list__item"></div>
     <div class="list__item">
-      <div class="list__item__chip">Senior</div>
+      <BarChart/>
+    </div>
+    <div class="list__item">
+      <BarChart/>
+    </div>
+    <div class="list__item">
+      <div class="list__item__chip">{{ data.userSkill }}</div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import BarChart from '@components/atoms/chart/BarChart.vue';
+import { toRefs } from 'vue';
+interface List {
+  userName: string;
+  userRole: string;
+  userResumeScore: number;
+  userSkillMatch: number;
+  userSkill: string;
+}
+interface Props {
+  data: List;
+}
+const props = defineProps<Props>();
+const { data } = toRefs(props);
 
 </script>
 
