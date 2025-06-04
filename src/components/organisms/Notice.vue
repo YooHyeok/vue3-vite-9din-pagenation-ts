@@ -31,6 +31,9 @@
         <NoticeList v-for="item in tableData" :key="item.userName" :data="item"/>
       </div>
     </div>
+    <div class="notice__footer">
+      <pagination />
+    </div>
   </div>
 </template>
 <script setup lang="ts">
