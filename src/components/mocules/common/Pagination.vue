@@ -18,7 +18,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed, ref, toRef, toRefs } from 'vue';
+import { computed, ref, toRefs } from 'vue';
 
 interface Props {
   totalPage: number
