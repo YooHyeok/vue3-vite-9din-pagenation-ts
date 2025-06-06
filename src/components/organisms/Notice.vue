@@ -53,7 +53,7 @@ const tableData = ref<List[]>([]);
 const selectedPage = ref<number>(1); // 0페이지라는 UI는 없으므로 초기값을 1로 세팅
 const totalPage = ref<number>(0); // tableData의 개수에 따라 페이지네이션 UI에 그려지는 숫자리스트.
 const totalCount = ref<number | undefined>(); // 총 데이터 리스트 개수
-const limit = ref<number>(10); // 한 페이지당 나타낼 데이터 개수
+const limit = ref<number>(8); // 한 페이지당 나타낼 데이터 개수
 
 /* 컴포넌트 DOM이 렌더링 된 이후 실행 */
 onMounted(() => {
@@ -332,7 +332,6 @@ const dissemble = (index: number, data: List[], size: number) => {
   for(let i = 0; i < data.length; i += size) {
     res.push(data.slice(i, i + size));
   }
-  console.log(res)
   return res[index]
 }
 
